@@ -1,18 +1,20 @@
 let globalVars = {
   app: [],
-  sprites: []
+  sprites: {}
 }
 
+let app = globalVars.app
+
 function initialisePixi () {
-  globalVars.app = new PIXI.Application({ width: 800, height: 800 })
-  globalVars.app.renderer.backgroundColor = 0xadf7e6
-  globalVars.app.renderer.view.style.position = "absolute"
-  globalVars.app.renderer.view.style.display = "block"
-  globalVars.app.renderer.autoResize = true
-  globalVars.app.renderer.resize(window.innerWidth, window.innerHeight)
-  globalVars.app.renderer.autoResize = true
+  app = new PIXI.Application({ width: 800, height: 800 })
+  app.renderer.backgroundColor = 0xadf7e6
+  app.renderer.view.style.position = "absolute"
+  app.renderer.view.style.display = "block"
+  app.renderer.autoResize = true
+  app.renderer.resize(window.innerWidth, window.innerHeight)
+  app.renderer.autoResize = true
   const container = document.getElementById('pixi-container')
-  container.appendChild(globalVars.app.view)
+  container.appendChild(app.view)
 }
 
 function initialiseObjects () {
@@ -25,44 +27,14 @@ function initialiseObjects () {
   .load(setup)
 }
 
-function createSprites() {
-  const ring = new PIXI.Sprite(PIXI.loader.resources["assets/ring.svg"].texture)
-  const letter = new PIXI.Sprite(PIXI.loader.resources["assets/letter-c.svg"].texture)
-  const block = new PIXI.Sprite(PIXI.loader.resources["assets/block.svg"].texture)
-  let sprites = Object.assign({
-    ring: ring,
-    letter: letter,
-    block: block
-  })
-  globalVars.sprites = sprites
-}
-
-function positionSprites() {
-  let x = 400
-  let y = 400
-  Object.values(globalVars.sprites).forEach((sprite, index) => {
-    sprite.x = x + (index * 250)
-    sprite.y = y - (index * 100)
-  })
-}
-
-function addSpritesToStage() {
-  Object.values(globalVars.sprites).forEach((sprite, index) => {
-    globalVars.app.stage.addChild(sprite)
-  })
-}
-
-function gameLoop(delta) {
-  globalVars.sprites.ring.x += 1
-}
-
 function setup () {
-  //Adding and positioning sprites
-  createSprites()
-  positionSprites()
-  addSpritesToStage()
-  //Adding Ticker
-  globalVars.app.ticker.add(delta => gameLoop(delta))
+  const ring = new FloatObject()
+  ring.initialise('assets/ring.svg', {x: 200, y: 200}, app.stage)
+  const letter = new FloatObject()
+  letter.initialise('assets/letter-c.svg', {x: 400, y: 400}, app.stage)
+  const block = new FloatObject()
+  block.initialise('assets/block.svg', {x: 600, y: 150}, app.stage)
+  globalVars.sprites = { ring: ring, letter: letter, block: block }
 }
  
 if (window)  {
