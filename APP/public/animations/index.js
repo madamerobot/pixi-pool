@@ -38,14 +38,28 @@ function initialiseObjects () {
   .load(setup)
 }
 
+function initCollisionDetection () {
+  const spritesArray = Object.keys(globalVars.sprites).map(function(key) {
+    return globalVars.sprites[key]
+  })
+  for (var i = 0; i < spritesArray.length; i++) {
+    for (var j = 0; j < spritesArray.length; j++) {
+      if (i != j) {
+        spritesArray[i].detectCollision(spritesArray[j])
+      }
+    }
+  }
+}
+
 function gameLoop (delta) {
   globalVars.state(delta)
 }
 
 function play (delta) {
-  globalVars.sprites.ring.move(1, 0.3) //xSpeed, ySpeed
-  globalVars.sprites.letter.move(0.2, 0.5) //xSpeed, ySpeed
-  globalVars.sprites.block.move(0.5, 0.7) //xSpeed, ySpeed
+  initCollisionDetection()
+  globalVars.sprites.ring.move(1, 0.3)
+  globalVars.sprites.letter.move(0.2, 0.5)
+  globalVars.sprites.block.move(0.5, 0.7)
 }
 
 function setup () {
@@ -62,8 +76,6 @@ function setup () {
   app.ticker.add(delta => gameLoop(delta))
 
 }
-
-
  
 if (window)  {
   window.addEventListener('load', initialisePixi)
