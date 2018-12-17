@@ -15,7 +15,7 @@ class FloatObject {
   initialise (filePath, pos, stage) {
     this.sprite = new PIXI.Sprite(PIXI.loader.resources[filePath].texture)
 
-    //Adding Event Listener
+    //Making Sprite interactive
     this.sprite.buttonMode = true
     this.sprite.interactive = true
     this.sprite.on('click', this.onClick)

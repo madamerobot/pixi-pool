@@ -63,6 +63,8 @@ function play (delta) {
 }
 
 function setup () {
+  const pool = new Pool()
+  pool.initialise(app.stage)
   const ring = new FloatObject()
   ring.initialise('../assets/ring.svg', { x: 200, y: 200 }, app.stage)
   const letter = new FloatObject()
