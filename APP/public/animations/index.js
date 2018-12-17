@@ -57,9 +57,9 @@ function gameLoop (delta) {
 
 function play (delta) {
   initCollisionDetection()
-  globalVars.sprites.ring.move(1, 0.3)
-  globalVars.sprites.letter.move(0.2, 0.5)
-  globalVars.sprites.block.move(0.5, 0.7)
+  globalVars.sprites.ring.move(1, 0.3, 0.1, 0) //xSpeed, ySpeed, vx, vy
+  globalVars.sprites.letter.move(0.2, 0.5, 0, 0.1)
+  globalVars.sprites.block.move(0.5, 0.7, 0, 0.2)
 }
 
 function setup () {

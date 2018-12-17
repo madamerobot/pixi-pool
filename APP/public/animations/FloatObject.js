@@ -1,15 +1,26 @@
 class FloatObject {
 
   constructor () {
-    this.xSpeed = 0
-    this.ySpeed = 0
     this.direction = 1
+    this.acceleration = { x: this.xSpeed, y: this.ySpeed }
+    this.velocity = { x: this.vx, y: this.vy }
     this.sprite = {}
     this.doesCollide = false
   }
 
+  onClick() {
+    console.log('Click')
+  }
+
   initialise (filePath, pos, stage) {
     this.sprite = new PIXI.Sprite(PIXI.loader.resources[filePath].texture)
+
+    //Adding Event Listener
+    this.sprite.buttonMode = true
+    this.sprite.interactive = true
+    this.sprite.on('click', this.onClick)
+
+    //Positioning Element
     this.sprite.x = pos.x
     this.sprite.y = pos.y
     stage.addChild(this.sprite)
@@ -50,15 +61,24 @@ class FloatObject {
     if (Math.abs(vx) < combinedHalfWidths) {
       if (Math.abs(vy) < combinedHalfHeights) {
         this.direction = this.direction * (-1)
+        r2.direction = r2.direction * (-1)
       } 
     }
   }
 
-  move (xSpeed, ySpeed) {
-    this.xSpeed = xSpeed
-    this.ySpeed = ySpeed
-    this.sprite.x = this.sprite.x + (this.xSpeed * this.direction)
-    this.sprite.y = this.sprite.y + (this.ySpeed * this.direction)
+  move (xSpeed, ySpeed, vx, vy) {
+    this.acceleration = {
+      x: xSpeed,
+      y: ySpeed
+    }
+    this.velocity = {
+      y: vy,
+      x: vx
+    }
+    let vectorX = this.acceleration.x + this.velocity.x
+    let vectorY = this.acceleration.y + this.velocity.y
+    this.sprite.x = this.sprite.x + (vectorX * this.direction)
+    this.sprite.y = this.sprite.y + (vectorY * this.direction)
     //Making object bounce from Pool corners
     if (this.sprite.x > 770 || this.sprite.x < 0 || this.sprite.y > 550 || this.sprite.y < 0) {
       this.direction = this.direction * (-1)
