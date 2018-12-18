@@ -1,6 +1,7 @@
 let globalVars = {
   app: [],
   sprites: {},
+  pool: {},
   state: play
 }
 
@@ -33,7 +34,8 @@ function initialiseObjects () {
   .add([
     "../assets/ring.svg",
     "../assets/letter-c.svg",
-    "../assets/block.svg"
+    "../assets/block.svg",
+    "../assets/displacement_map.jpeg"
   ])
   .load(setup)
 }
@@ -60,19 +62,21 @@ function play (delta) {
   globalVars.sprites.ring.move(1, 0.3, 0.1, 0) //xSpeed, ySpeed, vx, vy
   globalVars.sprites.letter.move(0.2, 0.5, 0, 0.1)
   globalVars.sprites.block.move(0.5, 0.7, 0, 0.2)
+  globalVars.pool.animate({ x: 0.1, y: 0.3 }, app.stage)
 }
 
-function setup () {
-  const pool = new Pool()
-  pool.initialise(app.stage)
+function setup () { 
   const ring = new FloatObject()
   ring.initialise('../assets/ring.svg', { x: 200, y: 200 }, app.stage)
   const letter = new FloatObject()
   letter.initialise('../assets/letter-c.svg', { x: 400, y: 400 }, app.stage)
   const block = new FloatObject()
   block.initialise('../assets/block.svg', { x: 600, y: 150 }, app.stage)
-
   globalVars.sprites = { ring: ring, letter: letter, block: block }
+
+  const pool = new Pool()
+  pool.initialise('../assets/displacement_map.png', app.stage, app)
+  globalVars.pool = pool
 
   globalVars.state = play
   app.ticker.add(delta => gameLoop(delta))
