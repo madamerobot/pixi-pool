@@ -67,12 +67,16 @@ function play (delta) {
 }
 
 function setup () { 
+  const canvas = document.querySelector("canvas")
+  const canvasWidth = parseInt(canvas.style.width)
+  const canvasHeight = parseInt(canvas.style.height)
+  const canvasCenter = { x: canvasWidth/2, y: canvasHeight/2}
   const ring = new FloatObject()
   ring.initialise('../assets/ring.svg', { x: 0, y: 0 }, app.stage, "ring")
   const letter = new FloatObject()
-  letter.initialise('../assets/letter-c.svg', { x: 914, y: 0 }, app.stage, "letter")
+  letter.initialise('../assets/letter-c.svg', { x: canvasCenter.x, y: 0 }, app.stage, "letter")
   const block = new FloatObject()
-  block.initialise('../assets/block.svg', { x: 913, y: 613 }, app.stage, "block")
+  block.initialise('../assets/block.svg', { x: 0, y: (canvasHeight - 50) }, app.stage, "block")
   globalVars.sprites = { ring: ring, letter: letter, block: block }
 
   const pool = new Pool()
