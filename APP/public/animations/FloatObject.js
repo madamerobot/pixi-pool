@@ -104,9 +104,11 @@ class FloatObject {
 
     if (this.sprite.x > canvasBorderHoriz || this.sprite.x < 0) {
       this.xDirection = this.xDirection * -1
+      this.acceleration.y = this.acceleration.y * Math.random(0.2, 0.6)
     }
     if (this.sprite.y > canvasBorderVertic || this.sprite.y < 0) {
       this.yDirection = this.yDirection * -1
+      this.acceleration.x = this.acceleration.x * Math.random(0.1, 0.3)
     } 
 
     //Setting up Physics Engine

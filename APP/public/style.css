@@ -4,7 +4,7 @@ canvas {
 
 #pixi-container {
   position: absolute;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 80%;
   height: 80%;
   padding: 0;
@@ -15,14 +15,50 @@ canvas {
   transform: translate(-50%, -50%);
 }
 
+.overlay-container {
+  position: fixed;
+  bottom: 0;
+  width: 60%;
+  height: 100%;
+  background-color: white;
+  z-index: 1;
+
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
+
 .logo {
   font-family: 'Inconsolata', monospace;
   text-align: right;
   margin-bottom: 20px;
+  width: 80%;
+  margin-top: 20px;
 }
 
 .center-container {
   width: 100%;
   height: 100vh;
   text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.layout-wrapper {
+  padding-left: 40px;
+  padding-right: 40px;
+  font-family: 'Inconsolata', monospace;
+  font-size: 15px;
+  line-height: 1.8;
+  text-align: left;
+  overflow: auto;
+  max-height: 100%;
+}
+
+.marker {
+  background-color: blue;
+  color: white;
+  padding: 5px;
+  font-size: 20px;
 }
