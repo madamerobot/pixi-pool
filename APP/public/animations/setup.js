@@ -22,8 +22,9 @@ function initialisePixi () {
   app.renderer.backgroundColor = 0xadf7e6
   app.renderer.view.style.position = "absolute"
   app.renderer.view.style.display = "block"
-  app.renderer.autoResize = true
-  app.renderer.resize(window.innerWidth, window.innerHeight)
+  // app.renderer.view.style.height = (window.innerHeight/100) * 80
+  // app.renderer.view.style.width = (window.innerWidth/100) * 80
+  app.renderer.resize(((window.innerWidth/100) * 80), ((window.innerHeight/100) * 80))
   app.renderer.autoResize = true
   const container = document.getElementById('pixi-container')
   container.appendChild(app.view)
@@ -35,7 +36,7 @@ function initialiseObjects () {
     "../assets/ring.svg",
     "../assets/letter-c.svg",
     "../assets/block.svg",
-    "../assets/displacement_map.jpeg"
+    "../assets/displacement_map.png"
   ])
   .load(setup)
 }
@@ -59,19 +60,19 @@ function gameLoop (delta) {
 
 function play (delta) {
   initCollisionDetection()
-  globalVars.sprites.ring.move(1, 0.3, 0.1, 0) //xSpeed, ySpeed, vx, vy
-  globalVars.sprites.letter.move(0.2, 0.5, 0, 0.1)
-  globalVars.sprites.block.move(0.5, 0.7, 0, 0.2)
+  globalVars.sprites.ring.move() // velocity, acceleration
+  globalVars.sprites.letter.move()
+  globalVars.sprites.block.move()
   globalVars.pool.animate({ x: 0.1, y: 0.3 }, app.stage)
 }
 
 function setup () { 
   const ring = new FloatObject()
-  ring.initialise('../assets/ring.svg', { x: 200, y: 200 }, app.stage)
+  ring.initialise('../assets/ring.svg', { x: 0, y: 0 }, app.stage, "ring")
   const letter = new FloatObject()
-  letter.initialise('../assets/letter-c.svg', { x: 400, y: 400 }, app.stage)
+  letter.initialise('../assets/letter-c.svg', { x: 914, y: 0 }, app.stage, "letter")
   const block = new FloatObject()
-  block.initialise('../assets/block.svg', { x: 600, y: 150 }, app.stage)
+  block.initialise('../assets/block.svg', { x: 913, y: 613 }, app.stage, "block")
   globalVars.sprites = { ring: ring, letter: letter, block: block }
 
   const pool = new Pool()

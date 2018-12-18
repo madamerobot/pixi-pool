@@ -1,19 +1,24 @@
 class FloatObject {
 
   constructor () {
-    this.direction = 1
-    this.acceleration = { x: this.xSpeed, y: this.ySpeed }
-    this.velocity = { x: this.vx, y: this.vy }
+    this.yDirection = 1
+    this.xDirection = 1
+    this.acceleration = { x: Math.random(0.1, 0.2), y: Math.random(0.1, 0.2)}
+    this.velocity = { x: Math.random(0.1, 0.2), y: Math.random(0.1, 0.2) }
+    this.vectorX = 0
+    this.vectorY = 0
     this.sprite = {}
     this.doesCollide = false
+    this.name = false
   }
 
   onClick() {
     console.log('Click')
   }
 
-  initialise (filePath, pos, stage) {
+  initialise (filePath, pos, stage, name) {
     this.sprite = new PIXI.Sprite(PIXI.loader.resources[filePath].texture)
+    this.name = name
 
     //Making Sprite interactive
     this.sprite.buttonMode = true
@@ -23,6 +28,11 @@ class FloatObject {
     //Positioning Element
     this.sprite.x = pos.x
     this.sprite.y = pos.y
+
+    //Moving Anchor to center
+    this.sprite.anchor.x = 0.5
+    this.sprite.anchor.y = 0.5
+
     stage.addChild(this.sprite)
   }
 
@@ -57,32 +67,54 @@ class FloatObject {
     combinedHalfWidths = r1.halfWidth + r2.halfWidth
     combinedHalfHeights = r1.halfHeight + r2.halfHeight
 
-    //Check for a collision and revert direction
+    //Detecting collision and clash-axis
+    let clashAxis = null
     if (Math.abs(vx) < combinedHalfWidths) {
+      //A collision might be occurring. Checking for a collision on the y axis
       if (Math.abs(vy) < combinedHalfHeights) {
-        this.direction = this.direction * (-1)
-        r2.direction = r2.direction * (-1)
-      } 
+        console.log('💥 INTERSECT')
+        if (vx < vy) {
+          clashAxis = 'x'       
+        } else if (vx > vy) {
+          clashAxis = 'y'
+        }
+        this.bounceOff(clashAxis)
+      }
+    } else {
+      this.doesCollide = false
     }
   }
 
-  move (xSpeed, ySpeed, vx, vy) {
-    this.acceleration = {
-      x: xSpeed,
-      y: ySpeed
-    }
-    this.velocity = {
-      y: vy,
-      x: vx
-    }
-    let vectorX = this.acceleration.x + this.velocity.x
-    let vectorY = this.acceleration.y + this.velocity.y
-    this.sprite.x = this.sprite.x + (vectorX * this.direction)
-    this.sprite.y = this.sprite.y + (vectorY * this.direction)
-    //Making object bounce from Pool corners
-    if (this.sprite.x > 770 || this.sprite.x < 0 || this.sprite.y > 550 || this.sprite.y < 0) {
-      this.direction = this.direction * (-1)
-    }
-  } 
+  bounceOff () {
+    this.yDirection = this.yDirection * (-1)
+    // this.velocity.y = this.velocity.y * 1.1
+    this.xDirection = this.xDirection * (-1)
+    // this.velocity.x = this.velocity.x * 1.2
+  }
 
+  move () {
+    
+    const canvas = document.querySelector("canvas")
+
+    //Reversing direction if object hits Pool corners
+    // let xRadius = this.sprite.width/2
+    // let yRadius = this.sprite.height/2
+    let canvasBorderHoriz = parseInt(canvas.style.width)
+    let canvasBorderVertic = parseInt(canvas.style.height)
+
+    if (this.sprite.x > canvasBorderHoriz || this.sprite.x < 0) {
+      this.xDirection = this.xDirection * -1
+    }
+    if (this.sprite.y > canvasBorderVertic || this.sprite.y < 0) {
+      this.yDirection = this.yDirection * -1
+    } 
+
+    //Setting up Physics Engine
+    this.vectorX = (this.acceleration.x + this.velocity.x) * this.xDirection
+    this.vectorY = (this.acceleration.y + this.velocity.y) * this.yDirection
+
+    this.sprite.x = this.sprite.x + this.vectorX
+    this.sprite.y = this.sprite.y + this.vectorY
+
+  } 
 }
