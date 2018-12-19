@@ -12,13 +12,18 @@ class FloatObject {
     this.name = false
   }
 
-  onClick() {
-    let overlayContainer = document.querySelector('.overlay-container')
-    swipeOverlay(overlayContainer)
-  }
-
   onHover() {
     console.log('Pausing...')
+  }
+
+  addMouseEvents() {
+    let pathname = this.name
+    this.sprite.on('click', function() {
+      let overlayContainer = document.querySelector('.overlay-container')
+      let layoutWrapper = document.querySelector('.layout-wrapper')
+      swipeOverlay(overlayContainer, layoutWrapper)
+      window.location = `/#/${pathname}`
+    })
   }
 
   initialise (filePath, pos, stage, name) {
@@ -36,8 +41,8 @@ class FloatObject {
     //Making Sprite interactive
     this.sprite.buttonMode = true
     this.sprite.interactive = true
-    this.sprite.on('click', this.onClick)
-    this.sprite.on('mouseover', this.onHover)
+
+    this.addMouseEvents()
 
     stage.addChild(this.sprite)
   }
@@ -45,7 +50,7 @@ class FloatObject {
   removeFromStage (stage) {
     stage.removeChild(this.sprite)
   }
-
+  
   detectCollision (otherSprite) {
     //Inspired by https://github.com/kittykatattack/learningPixi
     let combinedHalfWidths, combinedHalfHeights, vx, vy

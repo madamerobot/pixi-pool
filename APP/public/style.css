@@ -1,41 +1,15 @@
-canvas {
-  display: block;
-}
 
-#pixi-container {
-  position: absolute;
-  overflow: hidden;
-  width: 80%;
-  height: 80%;
-  padding: 0;
-
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%);
-}
 
 .overlay-container {
   position: absolute;
-  width: 60%;
+  width: 70%;
   height: 100%;
   background-color: white;
   z-index: 1;
-  top:148%;
-  left:50%;
+  top: 148%;
+  left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
-}
-
-.swiped-up {
-  top: 50%;
-}
-
-.logo {
-  font-family: 'Inconsolata', monospace;
-  font-size: 15px;
-  text-align: right;
-  width: 80%;
-  margin-top: 42px;
 }
 
 .center-container {
@@ -44,12 +18,57 @@ canvas {
   text-align: center;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.content-wrapper {
+  width: 80%;
+  height: 80%;
+  max-width: 1440px;
+  position: relative;
+}
+
+.content {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.logo {
+  font-family: 'Inconsolata', monospace;
+  font-size: 15px;
+  text-align: right;
+  width: 80%;
+  max-width: 1440px;
+  margin-bottom: 12px;
+}
+
+canvas {
+  display: block;
+}
+
+#pixi-container {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1440px;
+  height: 100%;
+  padding: 0;
+
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
 }
 
 .layout-wrapper {
-  padding-left: 40px;
-  padding-right: 40px;
+  opacity: 0;
+  padding-top: 40px;
+  padding-left: 80px;
+  padding-right: 80px;
   font-family: 'Inconsolata', monospace;
   font-size: 15px;
   line-height: 1.8;
@@ -76,6 +95,16 @@ canvas {
   animation-fill-mode: forwards;
 }
 
+.text-appear {
+  animation: text-appear 1000ms ease 1;
+  animation-fill-mode: forwards;
+}
+
+.text-disappear {
+  animation: text-disappear 1000ms ease 1;
+  animation-fill-mode: forwards;
+}
+
 @keyframes swipe-up-animation {
   0% {
     top: 146%
@@ -97,5 +126,29 @@ canvas {
   }
   100% {
     top: 146%
+  }
+}
+
+@keyframes text-appear {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes text-disappear {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
   }
 }

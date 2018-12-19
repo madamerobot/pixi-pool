@@ -69,6 +69,7 @@ function setup () {
   const canvasWidth = parseInt(canvas.style.width)
   const canvasHeight = parseInt(canvas.style.height)
   const canvasCenter = { x: canvasWidth/2, y: canvasHeight/2}
+
   const ring = new FloatObject()
   ring.initialise('../assets/ring.svg', { x: 0, y: 0 }, app.stage, "ring")
   const letter = new FloatObject()
@@ -83,7 +84,6 @@ function setup () {
 
   globalVars.state = play
   app.ticker.add(delta => gameLoop(delta))
-
 }
  
 if (window)  {

@@ -14,13 +14,13 @@ class Pool {
     let grid
 
     //Drawing the grid
-    for (var i = 0; i < 180; i++) {
+    for (var i = 0; i < 250; i++) {
       grid = new PIXI.Graphics()
       //Vertical lines
       grid.beginFill(0xFF3300)
       grid.lineStyle(1, 0xffffff, 0.5)
       grid.moveTo((i * 25), 0)
-      grid.lineTo((i * 25), 800)
+      grid.lineTo((i * 25), 2000)
       grid.lineTo((i * 25), 0)
       grid.endFill()
       //Horizontal lines
