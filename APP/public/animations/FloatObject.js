@@ -21,7 +21,9 @@ class FloatObject {
     this.sprite.on('click', function() {
       let overlayContainer = document.querySelector('.overlay-container')
       let layoutWrapper = document.querySelector('.layout-wrapper')
-      swipeOverlay(overlayContainer, layoutWrapper)
+      if (!overlayContainer.classList.contains('swipe-up-animation')){
+        swipeOverlay(overlayContainer, layoutWrapper)
+      }
       window.location = `/#/${pathname}`
     })
   }

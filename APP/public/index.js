@@ -21,7 +21,7 @@ function updateContent(path) {
     if (path.indexOf("#") > -1) {
         defaultPath = path
     } else {
-        defaultPath = '#/ring'
+        defaultPath = '#/about-me'
     }
 
     let contentTag = defaultPath .split('#/')[1]

@@ -1,10 +1,21 @@
+/*COLOR VARIABLES*/
 
+:root {
+  --yellow: #FFEB18;
+  --blue: #152FC6;
+  --pink: #FF2FC6;
+  --green: #15BA83;
+  --white: #FFFFFF;
+  --light-grey: #f1f1f1;
+}
+
+/*CONTAINERS & LAYOUTS*/
 
 .overlay-container {
   position: absolute;
   width: 70%;
   height: 100%;
-  background-color: white;
+  background-color: var(--white);
   z-index: 1;
   top: 148%;
   left: 50%;
@@ -78,10 +89,26 @@ canvas {
 }
 
 .marker {
-  background-color: #152FC6;
-  color: white;
+  color: var(--white);
   padding: 5px;
   font-size: 20px;
+  text-transform: uppercase;
+}
+
+.yellow {
+  background-color: var(--yellow);
+}
+
+.pink {
+  background-color: var(--pink);
+}
+
+.green {
+  background-color: var(--green);
+}
+
+.blue {
+  background-color: var(--blue);
 }
 
 /*CUSTOM SCROLLBAR*/
@@ -93,17 +120,17 @@ canvas {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: var(--light-grey); 
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #f1f1f1; 
+  background: var(--light-grey); 
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #FFEB18; 
+  background: var(--yellow) 
 }
 
 /*ANIMATIONS*/
