@@ -31,9 +31,10 @@ function initialisePixi () {
 function initialiseObjects () {
   PIXI.loader
   .add([
-    "../assets/ring.svg",
     "../assets/letter-c.svg",
-    "../assets/block.svg",
+    "../assets/letter-a.svg",
+    "../assets/letter-h.svg",
+    "../assets/letter-t.svg",
     "../assets/displacement_map.png"
   ])
   .load(setup)
@@ -58,9 +59,11 @@ function gameLoop (delta) {
 
 function play (delta) {
   initCollisionDetection()
-  globalVars.sprites.ring.move() // velocity, acceleration
-  globalVars.sprites.letter.move()
-  globalVars.sprites.block.move()
+  globalVars.sprites.letterA.move()
+  globalVars.sprites.letterC.move()
+  globalVars.sprites.letterH.move()
+  globalVars.sprites.letterT.move()
+
   globalVars.pool.animate({ x: 0.1, y: 0.3 }, app.stage)
 }
 
@@ -70,13 +73,16 @@ function setup () {
   const canvasHeight = parseInt(canvas.style.height)
   const canvasCenter = { x: canvasWidth/2, y: canvasHeight/2}
 
-  const ring = new FloatObject()
-  ring.initialise('../assets/ring.svg', { x: 0, y: 0 }, app.stage, "ring")
-  const letter = new FloatObject()
-  letter.initialise('../assets/letter-c.svg', { x: canvasCenter.x, y: 0 }, app.stage, "letter")
-  const block = new FloatObject()
-  block.initialise('../assets/block.svg', { x: 0, y: (canvasHeight - 50) }, app.stage, "block")
-  globalVars.sprites = { ring: ring, letter: letter, block: block }
+  const letterC = new FloatObject()
+  letterC.initialise('../assets/letter-c.svg', { x: 0, y: 0 }, app.stage, "cafe-robot")
+  const letterA = new FloatObject()
+  letterA.initialise('../assets/letter-a.svg', { x: canvasCenter.x, y: canvasCenter.y }, app.stage, "about-me")
+  const letterH = new FloatObject()
+  letterH.initialise('../assets/letter-h.svg', { x: 0, y: (canvasHeight - 50) }, app.stage, "human-centered-development")
+  const letterT = new FloatObject()
+  letterT.initialise('../assets/letter-t.svg', { x: (canvasCenter.x - 50), y: 0 }, app.stage, "teaching-and-speaking")
+
+  globalVars.sprites = { letterA: letterA, letterC: letterC, letterH: letterH, letterT: letterT }
 
   const pool = new Pool()
   pool.initialise('../assets/displacement_map.png', app.stage, app)
