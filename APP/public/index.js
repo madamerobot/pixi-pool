@@ -1,4 +1,5 @@
 function swipeOverlay(container, layout) {
+
     if (!container.classList.contains('swipe-up-animation')) {
         container.classList.remove('swipe-down-animation')
         container.classList.add('swipe-up-animation')
@@ -10,17 +11,22 @@ function swipeOverlay(container, layout) {
         layout.classList.add('text-disappear')
         container.classList.add('swipe-down-animation')
     }
+    
 }
 
 function updateContent(path) {
+
     let defaultPath = ''
+
     if (path.indexOf("#") > -1) {
         defaultPath = path
     } else {
         defaultPath = '#/ring'
     }
+
     let contentTag = defaultPath .split('#/')[1]
     let allContent = Array.from(document.querySelectorAll('.content'))
+
     allContent.map(content => {
         if (content.id !== contentTag) {
             content.classList.remove("show")
