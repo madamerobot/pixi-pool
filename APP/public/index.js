@@ -13,7 +13,13 @@ function swipeOverlay(container, layout) {
 }
 
 function updateContent(path) {
-    let contentTag = path.split('#/')[1]
+    let defaultPath = ''
+    if (path.indexOf("#") > -1) {
+        defaultPath = path
+    } else {
+        defaultPath = '#/ring'
+    }
+    let contentTag = defaultPath .split('#/')[1]
     let allContent = Array.from(document.querySelectorAll('.content'))
     allContent.map(content => {
         if (content.id !== contentTag) {
@@ -27,13 +33,21 @@ function updateContent(path) {
 
 if (window) {
     window.addEventListener('load', function() {
+
         let overlayContainer = document.querySelector('.overlay-container')
         let layoutWrapper = document.querySelector('.layout-wrapper')
+
+        updateContent(window.location.href)
+
+        if (window.location.href.indexOf("#") > -1){
+            swipeOverlay(overlayContainer, layoutWrapper)
+        }
+
         overlayContainer.addEventListener('click', function () {
+            updateContent(window.location.href)
             swipeOverlay(overlayContainer, layoutWrapper)
         })
-        updateContent(window.location.href)
-        swipeOverlay(overlayContainer, layoutWrapper)
+
     })
     window.addEventListener('hashchange', function() {
         updateContent(window.location.href)
