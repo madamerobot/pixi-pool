@@ -13,17 +13,17 @@ class FloatObject {
   }
 
   onClick() {
-    console.log('Click')
+    let overlayContainer = document.querySelector('.overlay-container')
+    swipeOverlay(overlayContainer)
+  }
+
+  onHover() {
+    console.log('Pausing...')
   }
 
   initialise (filePath, pos, stage, name) {
     this.sprite = new PIXI.Sprite(PIXI.loader.resources[filePath].texture)
     this.name = name
-
-    //Making Sprite interactive
-    this.sprite.buttonMode = true
-    this.sprite.interactive = true
-    this.sprite.on('click', this.onClick)
 
     //Positioning Element
     this.sprite.x = pos.x
@@ -32,6 +32,12 @@ class FloatObject {
     //Moving Anchor to center
     this.sprite.anchor.x = 0.5
     this.sprite.anchor.y = 0.5
+
+    //Making Sprite interactive
+    this.sprite.buttonMode = true
+    this.sprite.interactive = true
+    this.sprite.on('click', this.onClick)
+    this.sprite.on('mouseover', this.onHover)
 
     stage.addChild(this.sprite)
   }
@@ -93,7 +99,6 @@ class FloatObject {
   }
 
   move () {
-    
     const canvas = document.querySelector("canvas")
 
     //Reversing direction if object hits Pool corners
@@ -117,6 +122,5 @@ class FloatObject {
 
     this.sprite.x = this.sprite.x + this.vectorX
     this.sprite.y = this.sprite.y + this.vectorY
-
   } 
 }
