@@ -22,8 +22,6 @@ function initialisePixi () {
   app.renderer.backgroundColor = 0xadf7e6
   app.renderer.view.style.position = "absolute"
   app.renderer.view.style.display = "block"
-  // app.renderer.view.style.height = (window.innerHeight/100) * 80
-  // app.renderer.view.style.width = (window.innerWidth/100) * 80
   app.renderer.resize(((window.innerWidth/100) * 80), ((window.innerHeight/100) * 80))
   app.renderer.autoResize = true
   const container = document.getElementById('pixi-container')

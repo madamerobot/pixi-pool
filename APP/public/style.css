@@ -4,7 +4,7 @@ canvas {
 
 #pixi-container {
   position: absolute;
-  /* overflow: hidden; */
+  overflow: hidden;
   width: 80%;
   height: 80%;
   padding: 0;
@@ -16,16 +16,19 @@ canvas {
 }
 
 .overlay-container {
-  position: fixed;
-  bottom: 0;
+  position: absolute;
   width: 60%;
   height: 100%;
   background-color: white;
   z-index: 1;
-
-  top:50%;
+  top:148%;
   left:50%;
   transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.swiped-up {
+  top: 50%;
 }
 
 .logo {
@@ -61,4 +64,39 @@ canvas {
   color: white;
   padding: 5px;
   font-size: 20px;
+}
+
+/*ANIMATIONS*/
+.swipe-up-animation {
+  animation: swipe-up-animation 1000ms ease-out 1;
+  animation-fill-mode: forwards;
+}
+
+.swipe-down-animation {
+  animation: swipe-down-animation 1000ms ease-in 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes swipe-up-animation {
+  0% {
+    top: 146%
+  }
+  80% {
+    top: 50%;
+  }
+  100% {
+    top: 50%
+  }
+}
+
+@keyframes swipe-down-animation {
+  0% {
+    top: 50%
+  }
+  80% {
+    top: 146%;
+  }
+  100% {
+    top: 146%
+  }
 }
