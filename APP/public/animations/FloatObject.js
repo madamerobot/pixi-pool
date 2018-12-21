@@ -109,8 +109,6 @@ class FloatObject {
     const canvas = document.querySelector("canvas")
 
     //Reversing direction if object hits Pool corners
-    // let xRadius = this.sprite.width/2
-    // let yRadius = this.sprite.height/2
     let canvasBorderHoriz = parseInt(canvas.style.width)
     let canvasBorderVertic = parseInt(canvas.style.height)
 
@@ -121,6 +119,10 @@ class FloatObject {
     if (this.sprite.y > canvasBorderVertic || this.sprite.y < 0) {
       this.yDirection = this.yDirection * -1
       this.acceleration.x = this.acceleration.x * Math.random(0.1, 0.3)
+    } 
+    if (!this.sprite.y && !this.sprite.x) {
+      this.xDirection = this.xDirection * -1
+      // this.acceleration.x = this.acceleration.x * Math.random(0.1, 0.3)
     } 
 
     //Setting up Physics Engine

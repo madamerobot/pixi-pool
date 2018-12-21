@@ -2,11 +2,12 @@
 
 :root {
   --yellow: #FFEB18;
-  --blue: #152FC6;
+  --blue: #1600FF;
   --pink: #FF2FC6;
   --green: #15BA83;
   --white: #FFFFFF;
   --light-grey: #f1f1f1;
+  --dark-grey: #DEDEDE;
 }
 
 /*CONTAINERS & LAYOUTS*/
@@ -43,8 +44,66 @@
 
 .content {
   display: none;
-  width: 70%;
+  width: 80%;
   height: 100%;
+}
+
+.down-arrow {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+}
+
+.down-arrow img {
+  max-height: 32px;
+}
+
+.content > h1 {
+  margin-top: 14%;
+}
+
+.cta-info {
+  text-align: right;
+  /* position: fixed; */
+  /* right: 2%; */
+}
+
+.cta-info > ul {
+  margin-top: 26px;
+}
+
+.cta-info > ul > li {
+  max-width: 200px;
+  border: solid 2px blue;
+  margin-bottom: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: blue;
+  text-align: center;
+  background-color: white;
+}
+
+.cta-info > ul > li:hover {
+  background-color: blue;
+  color: white;
+  font-style: italic;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.bottom-border {
+  color: blue;
+}
+
+.bottom-border::after {
+  display: block;
+  content: '';
+  height: 2px;
+  background-color: blue;
+  width: 100%;
 }
 
 .show {
@@ -122,6 +181,29 @@ ul {
   background-color: var(--blue);
 }
 
+/*BREAKPOINTS*/
+@media (max-width: 920px) {
+    .layout-wrapper {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    canvas {
+      width: 100%;
+    }
+    .content-wrapper {
+      width: 100%;
+    }
+    #pixi-container {
+      width: 100%;
+    }
+    .overlay-container {
+      width: 90%;
+    }
+    .logo {
+      width: 100%;
+    }
+}
+
 /*CUSTOM SCROLLBAR*/
 
 /* width */
@@ -141,7 +223,7 @@ ul {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--yellow) 
+  background: var(--dark-grey);
 }
 
 /*ANIMATIONS*/

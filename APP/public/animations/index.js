@@ -78,7 +78,7 @@ function setup () {
   const letterA = new FloatObject()
   letterA.initialise('../assets/letter-a.svg', { x: canvasCenter.x, y: canvasCenter.y }, app.stage, "about-me")
   const letterH = new FloatObject()
-  letterH.initialise('../assets/letter-h.svg', { x: 0, y: (canvasHeight - 50) }, app.stage, "human-centered-development")
+  letterH.initialise('../assets/letter-h.svg', { x: 0, y: (canvasHeight - 50) }, app.stage, "work")
   const letterT = new FloatObject()
   letterT.initialise('../assets/letter-t.svg', { x: (canvasCenter.x - 50), y: 0 }, app.stage, "teaching-and-speaking")
 
