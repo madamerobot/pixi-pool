@@ -12,6 +12,7 @@ let sprites = globalVars.sprites
 function resize () {
   const parent = app.view.parentNode
   app.renderer.resize(parent.clientWidth, parent.clientHeight)
+  globalVars.sprites.forEach(sprite => sprite.initiateSpecs())
 }
 
 function initialisePixi () {
@@ -47,7 +48,7 @@ function initCollisionDetection () {
   for (var i = 0; i < spritesArray.length; i++) {
     for (var j = 0; j < spritesArray.length; j++) {
       if (i != j) {
-        spritesArray[i].detectCollision(spritesArray[j])
+        spritesArray[i].detectObjectCollision(spritesArray[j])
       }
     }
   }
@@ -74,13 +75,13 @@ function setup () {
   const canvasCenter = { x: canvasWidth/2, y: canvasHeight/2}
 
   const letterC = new FloatObject()
-  letterC.initialise('../assets/letter-c.svg', { x: 0, y: 0 }, app.stage, "cafe-robot")
+  letterC.initialise('../assets/letter-c.svg', { x: 100 , y: 100 }, app.stage, "cafe-robot")
   const letterA = new FloatObject()
   letterA.initialise('../assets/letter-a.svg', { x: canvasCenter.x, y: canvasCenter.y }, app.stage, "about-me")
   const letterH = new FloatObject()
-  letterH.initialise('../assets/letter-h.svg', { x: 0, y: (canvasHeight - 50) }, app.stage, "work")
+  letterH.initialise('../assets/letter-h.svg', { x: canvasCenter.x + 50, y: (canvasHeight - 100) }, app.stage, "work")
   const letterT = new FloatObject()
-  letterT.initialise('../assets/letter-t.svg', { x: (canvasCenter.x - 50), y: 0 }, app.stage, "teaching-and-speaking")
+  letterT.initialise('../assets/letter-t.svg', { x: (canvasCenter.x - 50), y: 100 }, app.stage, "teaching-and-speaking")
 
   globalVars.sprites = { letterA: letterA, letterC: letterC, letterH: letterH, letterT: letterT }
 

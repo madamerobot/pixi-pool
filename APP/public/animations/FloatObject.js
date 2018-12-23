@@ -8,8 +8,10 @@ class FloatObject {
     this.vectorX = 0
     this.vectorY = 0
     this.sprite = {}
-    this.doesCollide = false
     this.name = false
+    this.canvas = false
+    this.canvasBorderHoriz = false
+    this.canvasBorderVertic = false
   }
 
   onHover() {
@@ -45,15 +47,22 @@ class FloatObject {
     this.sprite.interactive = true
 
     this.addMouseEvents()
+    this.initiateSpecs()
 
     stage.addChild(this.sprite)
+  }
+
+  initiateSpecs() {
+    this.canvas = document.querySelector("canvas")
+    this.canvasBorderHoriz = parseInt(this.canvas.style.width) - this.sprite.width/2
+    this.canvasBorderVertic = parseInt(this.canvas.style.height) - this.sprite.height/2
   }
 
   removeFromStage (stage) {
     stage.removeChild(this.sprite)
   }
   
-  detectCollision (otherSprite) {
+  detectObjectCollision (otherSprite) {
     //Inspired by https://github.com/kittykatattack/learningPixi
     let combinedHalfWidths, combinedHalfHeights, vx, vy
 
@@ -81,50 +90,33 @@ class FloatObject {
     combinedHalfHeights = r1.halfHeight + r2.halfHeight
 
     //Detecting collision and clash-axis
-    let clashAxis = null
     if (Math.abs(vx) < combinedHalfWidths) {
       //A collision might be occurring. Checking for a collision on the y axis
       if (Math.abs(vy) < combinedHalfHeights) {
-        console.log('💥 INTERSECT')
-        if (vx < vy) {
-          clashAxis = 'x'       
-        } else if (vx > vy) {
-          clashAxis = 'y'
-        }
-        this.bounceOff(clashAxis)
+        this.bounceOff()
       }
-    } else {
-      this.doesCollide = false
     }
   }
 
   bounceOff () {
     this.yDirection = this.yDirection * (-1)
-    // this.velocity.y = this.velocity.y * 1.1
     this.xDirection = this.xDirection * (-1)
-    // this.velocity.x = this.velocity.x * 1.2
   }
 
   move () {
-    const canvas = document.querySelector("canvas")
 
-    //Reversing direction if object hits Pool corners
-    let canvasBorderHoriz = parseInt(canvas.style.width)
-    let canvasBorderVertic = parseInt(canvas.style.height)
-
-    if (this.sprite.x > canvasBorderHoriz || this.sprite.x < 0) {
+    //Reversing directions if object hits Pool corners
+    if (this.sprite.x > this.canvasBorderHoriz || this.sprite.x < 0 + (this.sprite.width/2)) {
       this.xDirection = this.xDirection * -1
-      this.acceleration.y = this.acceleration.y * Math.random(0.2, 0.6)
     }
-    if (this.sprite.y > canvasBorderVertic || this.sprite.y < 0) {
+    if (this.sprite.y > this.canvasBorderVertic || this.sprite.y < 0 + this.sprite.height/2) {
       this.yDirection = this.yDirection * -1
-      this.acceleration.x = this.acceleration.x * Math.random(0.1, 0.3)
     } 
-    if (!this.sprite.y && !this.sprite.x) {
+    if (this.sprite.x === 0 && this.sprite.y === 0) {
+      this.yDirection = this.yDirection * -1
       this.xDirection = this.xDirection * -1
-      // this.acceleration.x = this.acceleration.x * Math.random(0.1, 0.3)
     } 
-
+        
     //Setting up Physics Engine
     this.vectorX = (this.acceleration.x + this.velocity.x) * this.xDirection
     this.vectorY = (this.acceleration.y + this.velocity.y) * this.yDirection

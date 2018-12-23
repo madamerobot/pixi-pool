@@ -42,6 +42,8 @@ if (window) {
 
         let overlayContainer = document.querySelector('.overlay-container')
         let layoutWrapper = document.querySelector('.layout-wrapper')
+        let closeCross = document.querySelector('.cross-close')
+        let clickZone = document.querySelector('.click-zone')
 
         updateContent(window.location.href)
 
@@ -49,11 +51,16 @@ if (window) {
             swipeOverlay(overlayContainer, layoutWrapper)
         }
 
-        overlayContainer.addEventListener('click', function () {
+        closeCross.addEventListener('click', function() {
             updateContent(window.location.href)
             swipeOverlay(overlayContainer, layoutWrapper)
         })
 
+        clickZone.addEventListener('click', function() {
+            updateContent(window.location.href)
+            swipeOverlay(overlayContainer, layoutWrapper)
+        })
+        
     })
     window.addEventListener('hashchange', function() {
         updateContent(window.location.href)
