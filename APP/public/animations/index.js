@@ -34,7 +34,7 @@ function initialiseObjects () {
   .add([
     "../assets/letter-c.svg",
     "../assets/letter-a.svg",
-    "../assets/letter-h.svg",
+    "../assets/letter-w.svg",
     "../assets/letter-t.svg",
     "../assets/displacement_map.png"
   ])
@@ -79,7 +79,7 @@ function setup () {
   const letterA = new FloatObject()
   letterA.initialise('../assets/letter-a.svg', { x: canvasCenter.x, y: canvasCenter.y }, app.stage, "about-me")
   const letterH = new FloatObject()
-  letterH.initialise('../assets/letter-h.svg', { x: canvasCenter.x + 50, y: (canvasHeight - 100) }, app.stage, "work")
+  letterH.initialise('../assets/letter-w.svg', { x: canvasCenter.x + 50, y: (canvasHeight - 100) }, app.stage, "work")
   const letterT = new FloatObject()
   letterT.initialise('../assets/letter-t.svg', { x: (canvasCenter.x - 50), y: 100 }, app.stage, "teaching-and-speaking")
 

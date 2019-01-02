@@ -44,6 +44,7 @@ if (window) {
         let layoutWrapper = document.querySelector('.layout-wrapper')
         let closeCross = document.querySelector('.cross-close')
         let clickZone = document.querySelector('.click-zone')
+        let nextArrow = document.querySelector('.next-arrow')
 
         updateContent(window.location.href)
 
@@ -56,13 +57,28 @@ if (window) {
             swipeOverlay(overlayContainer, layoutWrapper)
         })
 
-        clickZone.addEventListener('click', function() {
-            updateContent(window.location.href)
-            swipeOverlay(overlayContainer, layoutWrapper)
+        // clickZone.addEventListener('click', function() {
+        //     updateContent(window.location.href)
+        //     swipeOverlay(overlayContainer, layoutWrapper)
+        // })
+
+        nextArrow.addEventListener('click', function() {
+            enterNextPage()
         })
         
     })
     window.addEventListener('hashchange', function() {
         updateContent(window.location.href)
     })
+}
+
+function enterNextPage() {
+    let allPages = ['/about-me', '/work', '/teaching-and-speaking', '/cafe-robot']
+    let currentPage = window.location.href.split('#')[1]
+    let index = allPages.indexOf(currentPage)
+    let nextPageIndex = index + 1
+    if (nextPageIndex === allPages.length) {
+        nextPageIndex = 0
+    }
+    window.location = `#${allPages[nextPageIndex]}`
 }
