@@ -44,7 +44,7 @@ if (window) {
         let layoutWrapper = document.querySelector('.layout-wrapper')
         let closeCross = document.querySelector('.cross-close')
         let clickZone = document.querySelector('.click-zone')
-        let nextArrow = document.querySelector('.next-arrow')
+        let nextArrows = document.querySelectorAll('.next-arrow')
 
         updateContent(window.location.href)
 
@@ -62,9 +62,9 @@ if (window) {
         //     swipeOverlay(overlayContainer, layoutWrapper)
         // })
 
-        nextArrow.addEventListener('click', function() {
+        nextArrows.forEach(item => item.addEventListener('click', function() {
             enterNextPage()
-        })
+        }))
         
     })
     window.addEventListener('hashchange', function() {
