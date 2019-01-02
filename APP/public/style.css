@@ -289,7 +289,8 @@ ul {
 
 /*ANIMATIONS*/
 .swipe-up-animation {
-  animation: swipe-up-animation 1000ms ease-out 1;
+  animation: swipe-up-animation 1000ms 1;
+  transition-timing-function: cubic-bezier(0.8, 0, 0.2, 1);
   animation-fill-mode: forwards;
 }
 

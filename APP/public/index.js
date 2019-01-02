@@ -24,7 +24,7 @@ function updateContent(path) {
         defaultPath = '#/about-me'
     }
 
-    let contentTag = defaultPath .split('#/')[1]
+    let contentTag = defaultPath.split('#/')[1]
     let allContent = Array.from(document.querySelectorAll('.content'))
 
     allContent.map(content => {
@@ -67,6 +67,7 @@ if (window) {
             enterNextPage()
         }))
 
+        //Currently not in use but maybe for later
         toggleHeader.forEach(header => header.addEventListener('click', function() {
             let toggleList = header.nextElementSibling
             if (toggleList.classList.contains('show')){
