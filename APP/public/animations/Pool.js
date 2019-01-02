@@ -19,16 +19,16 @@ class Pool {
       //Vertical lines
       grid.beginFill(0xFF3300)
       grid.lineStyle(1, 0xffffff, 0.5)
-      grid.moveTo((i * 25), 0)
-      grid.lineTo((i * 25), 2000)
-      grid.lineTo((i * 25), 0)
+      grid.moveTo((i * 35), 0)
+      grid.lineTo((i * 35), 2000)
+      grid.lineTo((i * 35), 0)
       grid.endFill()
       //Horizontal lines
       grid.beginFill(0xFF3300)
       grid.lineStyle(1, 0xffffff, 0.5)
-      grid.moveTo(0, (i * 25))
-      grid.lineTo(1500, (i * 25))
-      grid.lineTo(0, (i * 25))
+      grid.moveTo(0, (i * 35))
+      grid.lineTo(1500, (i * 35))
+      grid.lineTo(0, (i * 35))
       grid.endFill()
       stage.addChild(grid)
     }
@@ -59,7 +59,7 @@ class Pool {
     if (this.displacementSprite.y > stage.height || this.displacementSprite.y < 0) {
       this.direction = this.direction * -1
     }
-    this.displacementSprite.x = this.displacementSprite.x + (Math.random(0.3, 3.3) * this.direction)
-    this.displacementSprite.y = this.displacementSprite.y + (Math.random(0.1, 2.4) * this.direction)
+    this.displacementSprite.x = this.displacementSprite.x + (Math.random(3, 8) * this.direction)
+    this.displacementSprite.y = this.displacementSprite.y + (Math.random(3, 8) * this.direction)
   }
 }

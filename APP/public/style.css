@@ -53,7 +53,7 @@
 
 .content {
   display: none;
-  width: 80%;
+  width: 70%;
   height: 100%;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .header-section {
-  margin-top: 50px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -94,28 +94,15 @@
 }
 
 .cta-info {
-  text-align: right;
+  margin-top: 40px;
+  width: 100%;
 }
 
-.cta-info > ul {
-  margin-top: 26px;
-}
-
-.cta-info > ul > li {
-  max-width: 200px;
-  border: solid 2px var(--blue);
-  margin-bottom: 5px;
-  padding-left: 8px;
-  padding-right: 8px;
-  color: var(--blue);
-  text-align: center;
-  background-color: var(--white);
-}
-
-.cta-info > ul > li:hover {
-  background-color: var(--blue);
-  color: var(--white);
-  font-style: italic;
+.link-button {
+  font-family: 'Work Sans', sans-serif;
+  border: solid 2px black;
+  font-weight: bold;
+  padding: 10px;
 }
 
 a {
@@ -123,16 +110,35 @@ a {
   text-decoration: none;
 }
 
-.bottom-border {
-  color: var(--blue);
-}
-
 .bottom-border::after {
   display: block;
   content: '';
   height: 2px;
-  background-color: var(--blue);;
   width: 100%;
+}
+
+.bottom-border.green::after {
+  background-color: var(--green);
+}
+
+.bottom-border.pink::after {
+  background-color: var(--pink);
+}
+
+.bottom-border.yellow::after {
+  background-color: var(--yellow);
+}
+
+.bottom-border.blue::after {
+  background-color: var(--blue);
+}
+
+.toggle-header {
+  cursor: pointer;
+}
+
+.toggle-list {
+  display: none;
 }
 
 .show {
@@ -176,11 +182,15 @@ canvas {
   padding-left: 60px;
   padding-right: 60px;
   font-family: 'Inconsolata', monospace;
-  font-size: 15px;
-  line-height: 1.8;
+  font-size: 20px;
+  line-height: 1.2;
   text-align: left;
   overflow: auto;
   max-height: 100%;
+}
+
+.layout-wrapper > h3 {
+  font-size: 20px;
 }
 
 ul {
@@ -199,7 +209,22 @@ ul {
   text-transform: uppercase;
   text-decoration: underline;
   text-underline-position: under;
+}
+
+.blue {
   text-decoration-color: var(--blue);
+}
+
+.pink {
+  text-decoration-color: var(--pink);
+}
+
+.green {
+  text-decoration-color: var(--green);
+}
+
+.yellow {
+  text-decoration-color: var(--yellow);
 }
 
 /*BREAKPOINTS*/

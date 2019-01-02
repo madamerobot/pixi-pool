@@ -45,6 +45,7 @@ if (window) {
         let closeCross = document.querySelector('.cross-close')
         let clickZone = document.querySelector('.click-zone')
         let nextArrows = document.querySelectorAll('.next-arrow')
+        let toggleHeader = document.querySelectorAll('.toggle-header')
 
         updateContent(window.location.href)
 
@@ -57,13 +58,22 @@ if (window) {
             swipeOverlay(overlayContainer, layoutWrapper)
         })
 
-        // clickZone.addEventListener('click', function() {
-        //     updateContent(window.location.href)
-        //     swipeOverlay(overlayContainer, layoutWrapper)
-        // })
+        clickZone.addEventListener('click', function() {
+            updateContent(window.location.href)
+            swipeOverlay(overlayContainer, layoutWrapper)
+        })
 
         nextArrows.forEach(item => item.addEventListener('click', function() {
             enterNextPage()
+        }))
+
+        toggleHeader.forEach(header => header.addEventListener('click', function() {
+            let toggleList = header.nextElementSibling
+            if (toggleList.classList.contains('show')){
+                toggleList.classList.remove('show')
+            } else {
+                toggleList.classList.add('show')
+            }
         }))
         
     })
