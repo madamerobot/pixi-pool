@@ -1,3 +1,14 @@
+function enterNextPage() {
+    let allPages = ['/about-me', '/work', '/teaching-and-speaking', '/cafe-robot']
+    let currentPage = window.location.href.split('#')[1]
+    let index = allPages.indexOf(currentPage)
+    let nextPageIndex = index + 1
+    if (nextPageIndex === allPages.length) {
+        nextPageIndex = 0
+    }
+    window.location = `#${allPages[nextPageIndex]}`
+}
+
 function swipeOverlay(container, layout) {
 
     if (!container.classList.contains('swipe-up-animation')) {
@@ -26,13 +37,19 @@ function updateContent(path) {
 
     let contentTag = defaultPath.split('#/')[1]
     let allContent = Array.from(document.querySelectorAll('.content'))
-
+    let allHeadlines = Array.from(document.querySelectorAll('.headline'))
+    let headlineId = `hl-${contentTag}`
+    
     allContent.map(content => {
         if (content.id !== contentTag) {
             content.classList.remove("show")
+            allHeadlines.filter(headline => headline.id != headlineId)
+            allHeadlines.forEach(headline => headline.classList.remove("animate-hl"))
         }
         else {
             content.classList.add("show")
+            let currentHeadline = document.getElementById(headlineId)
+            setTimeout(function() { currentHeadline.classList.add("animate-hl") }, 600)
         }
     })
 }
@@ -81,15 +98,4 @@ if (window) {
     window.addEventListener('hashchange', function() {
         updateContent(window.location.href)
     })
-}
-
-function enterNextPage() {
-    let allPages = ['/about-me', '/work', '/teaching-and-speaking', '/cafe-robot']
-    let currentPage = window.location.href.split('#')[1]
-    let index = allPages.indexOf(currentPage)
-    let nextPageIndex = index + 1
-    if (nextPageIndex === allPages.length) {
-        nextPageIndex = 0
-    }
-    window.location = `#${allPages[nextPageIndex]}`
 }

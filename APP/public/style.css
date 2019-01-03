@@ -76,6 +76,14 @@
   align-items: baseline;
 }
 
+.initial-letter > img {
+  height: 130px;
+}
+
+.initial-letter {
+  margin-bottom: 50px;
+}
+
 .next-arrow {
   display: block;
   cursor: pointer;
@@ -99,10 +107,18 @@
 }
 
 .link-button {
+  display: inline-block;
   font-family: 'Work Sans', sans-serif;
   border: solid 2px black;
   font-weight: bold;
   padding: 10px;
+}
+
+.link-button:hover {
+  border: none;
+  background: black;
+  color: white;
+  transform: rotate(2deg);
 }
 
 a {
@@ -198,33 +214,42 @@ ul {
   padding: 0;
 }
 
-.header > h1 {
+.headline {
   margin-bottom: 0;
-}
-
-.marker {
   font-family: 'Work Sans', sans-serif;
   padding-left: 0;
   font-size: 24px;
   text-transform: uppercase;
-  text-decoration: underline;
-  text-underline-position: under;
 }
 
-.blue {
-  text-decoration-color: var(--blue);
+.headline:after {
+  display: block;
+  content: '';
+  width: 0%;
+  height: 2px;
+  visibility: hidden;
+  transition: width .25s ease-out;
 }
 
-.pink {
-  text-decoration-color: var(--pink);
+.headline.animate-hl:after {
+  visibility: visible;
+  width: 100%;
 }
 
-.green {
-  text-decoration-color: var(--green);
+.headline.green:after {
+  background-color: var(--green);
 }
 
-.yellow {
-  text-decoration-color: var(--yellow);
+.headline.pink:after {
+  background-color: var(--pink);
+}
+
+.headline.yellow:after {
+  background-color: var(--yellow);
+}
+
+.headline.blue:after {
+  background-color: var(--blue);
 }
 
 /*BREAKPOINTS*/
