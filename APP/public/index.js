@@ -49,7 +49,7 @@ function updateContent(path) {
         else {
             content.classList.add("show")
             let currentHeadline = document.getElementById(headlineId)
-            setTimeout(function() { currentHeadline.classList.add("animate-hl") }, 600)
+            setTimeout(function() { currentHeadline.classList.add("animate-hl") }, 940)
         }
     })
 }

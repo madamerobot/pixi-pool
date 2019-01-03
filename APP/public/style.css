@@ -81,7 +81,8 @@
 }
 
 .initial-letter {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  margin-top: 40px;
 }
 
 .next-arrow {
@@ -228,7 +229,7 @@ ul {
   width: 0%;
   height: 2px;
   visibility: hidden;
-  transition: width .25s ease-out;
+  transition: width .2s ease-out;
 }
 
 .headline.animate-hl:after {
@@ -254,9 +255,6 @@ ul {
 
 /*BREAKPOINTS*/
 @media (max-width: 920px) {
-    .header-section {
-      flex-direction: column-reverse;
-    }
     .header h1 {
       margin-top: 0;
     }
