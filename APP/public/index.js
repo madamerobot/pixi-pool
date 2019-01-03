@@ -10,7 +10,6 @@ function enterNextPage() {
 }
 
 function swipeOverlay(container, layout) {
-
     if (!container.classList.contains('swipe-up-animation')) {
         container.classList.remove('swipe-down-animation')
         container.classList.add('swipe-up-animation')
@@ -22,11 +21,9 @@ function swipeOverlay(container, layout) {
         layout.classList.add('text-disappear')
         container.classList.add('swipe-down-animation')
     }
-    
 }
 
 function updateContent(path) {
-
     let defaultPath = ''
 
     if (path.indexOf("#") > -1) {
