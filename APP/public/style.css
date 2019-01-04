@@ -8,6 +8,36 @@
   --white: #FFFFFF;
   --light-grey: #f1f1f1;
   --dark-grey: #DEDEDE;
+  --black: #000000;
+}
+
+/*FONTS*/
+/* inconsolata-regular - latin */
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/inconsolata-v16-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Inconsolata Regular'), local('Inconsolata-Regular'),
+       url('assets/fonts/inconsolata-v16-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('assets/fonts/inconsolata-v16-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('assets/fonts/inconsolata-v16-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('assets/fonts/inconsolata-v16-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('assets/fonts/inconsolata-v16-latin-regular.svg#Inconsolata') format('svg'); /* Legacy iOS */
+}
+
+/* work-sans-700 - latin */
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/work-sans-v3-latin-700.eot'); /* IE9 Compat Modes */
+  src: local('Work Sans Bold'), local('WorkSans-Bold'),
+       url('../fonts/work-sans-v3-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/work-sans-v3-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/work-sans-v3-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/work-sans-v3-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/work-sans-v3-latin-700.svg#WorkSans') format('svg'); /* Legacy iOS */
 }
 
 /*CONTAINERS & LAYOUTS*/
@@ -66,8 +96,8 @@
 }
 
 .cross-close img {
-  max-height: 10px;
-  padding: 14px;
+  height: 16px;
+  padding: 24px;
 }
 
 .header-section {
@@ -89,6 +119,14 @@
 .next-arrow {
   display: block;
   cursor: pointer;
+}
+
+.next-arrow img {
+  width: 34px;
+}
+
+.next-arrow:hover img {
+  transform: translateX(8px);
 }
 
 .next-arrow:hover p {
@@ -271,6 +309,10 @@ ul {
 
 .headline.blue:after {
   background-color: var(--blue);
+}
+
+.headline.black:after {
+  background-color: var(--black);
 }
 
 /*BREAKPOINTS*/
