@@ -6,6 +6,16 @@ function enterNextPage() {
     if (nextPageIndex === allPages.length) {
         nextPageIndex = 0
     }
+
+    let cleanIds = allPages.map(page => page.split('/')[1])
+    
+    let previousContent = document.getElementById(`${cleanIds[index]}`)
+    let nextContent = document.getElementById(`${cleanIds[nextPageIndex]}`)
+
+    previousContent.classList.remove('text-appear')
+    previousContent.classList.add('text-disappear')
+    nextContent.classList.add('text-appear')
+
     window.location = `#${allPages[nextPageIndex]}`
 }
 
