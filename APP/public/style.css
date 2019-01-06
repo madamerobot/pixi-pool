@@ -363,6 +363,7 @@ ul {
       width: 100%;
       flex-direction: column;
       margin-bottom: 22px;
+      margin-top: 22px;
     }
     .logo > a {
       width: 100%;
@@ -375,6 +376,8 @@ ul {
     .disclaimer {
       width: 100%;
       text-align: center;
+      margin-top: 22px;
+      margin-bottom: 22px
     }
 }
 
