@@ -68,7 +68,6 @@ if (window) {
         }
 
         closeCross.addEventListener('click', function() {
-            updateContent(window.location.href)
             swipeOverlay(overlayContainer, layoutWrapper)
         })
 
@@ -79,20 +78,14 @@ if (window) {
 
         nextArrows.forEach(item => item.addEventListener('click', function() {
             enterNextPage()
-        }))
-
-        //Currently not in use but maybe for later
-        toggleHeader.forEach(header => header.addEventListener('click', function() {
-            let toggleList = header.nextElementSibling
-            if (toggleList.classList.contains('show')){
-                toggleList.classList.remove('show')
-            } else {
-                toggleList.classList.add('show')
-            }
-        }))
-        
+        }))        
     })
     window.addEventListener('hashchange', function() {
         updateContent(window.location.href)
+        let overlayContainer = document.querySelector('.overlay-container')
+        let layoutWrapper = document.querySelector('.layout-wrapper')
+        if (!overlayContainer.classList.contains('swipe-up-animation')) {
+            swipeOverlay(overlayContainer, layoutWrapper) 
+        }
     })
 }
