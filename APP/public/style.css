@@ -211,12 +211,23 @@ a {
 }
 
 .logo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
   font-family: 'Inconsolata', monospace;
   font-size: 15px;
   text-align: right;
   width: 80%;
   max-width: 1440px;
   margin-bottom: 12px;
+}
+
+.logo > h1 {
+  font-size: 15px;
+  font-weight: normal;
+  text-transform: uppercase;
+  text-align: left;
+  margin: 0;
 }
 
 .disclaimer {
@@ -347,6 +358,7 @@ ul {
     }
     .logo {
       width: 100%;
+      flex-direction: column;
     }
     .disclaimer {
       width: 100%;
