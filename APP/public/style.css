@@ -41,6 +41,9 @@
 }
 
 /*CONTAINERS & LAYOUTS*/
+body {
+  margin: 0;
+}
 
 .overlay-container {
   position: absolute;
@@ -359,7 +362,7 @@ ul {
     .logo {
       width: 100%;
       flex-direction: column;
-      margin-bottom: 30px;
+      margin-bottom: 22px;
     }
     .logo > a {
       width: 100%;
