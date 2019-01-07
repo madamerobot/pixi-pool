@@ -12,9 +12,9 @@ function enterNextPage() {
     let previousContent = document.getElementById(`${cleanIds[index]}`)
     let nextContent = document.getElementById(`${cleanIds[nextPageIndex]}`)
 
-    previousContent.classList.remove('text-appear')
-    previousContent.classList.add('text-disappear')
-    nextContent.classList.add('text-appear')
+    previousContent.classList.remove('content-transition-in')
+    previousContent.classList.add('content-transition-out')
+    nextContent.classList.add('content-transition-in')
 
     window.location = `#${allPages[nextPageIndex]}`
 }
@@ -23,12 +23,12 @@ function swipeOverlay(container, layout) {
     if (!container.classList.contains('swipe-up-animation')) {
         container.classList.remove('swipe-down-animation')
         container.classList.add('swipe-up-animation')
-        layout.classList.remove('text-disappear')
-        layout.classList.add('text-appear')
+        layout.classList.remove('content-transition-out')
+        layout.classList.add('content-transition-in')
     } else {
         container.classList.remove('swipe-up-animation')
-        layout.classList.remove('text-appear')
-        layout.classList.add('text-disappear')
+        layout.classList.remove('content-transition-in')
+        layout.classList.add('content-transition-out')
         container.classList.add('swipe-down-animation')
     }
 }
@@ -57,6 +57,10 @@ function updateContent(path) {
             content.classList.add("show")
             let currentHeadline = document.getElementById(headlineId)
             setTimeout(function() { currentHeadline.classList.add("animate-hl") }, 940)
+        }
+        if (content.id === 'privacy') {
+            let eye = document.getElementById("eye-ball")
+            setTimeout(function() { eye.classList.add("eye-roll-animation") }, 940)
         }
     })
 }

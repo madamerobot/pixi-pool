@@ -114,6 +114,10 @@ body {
   height: 130px;
 }
 
+#privacy-eye {
+  max-width: 150px;
+}
+
 .initial-letter {
   margin-bottom: 30px;
   margin-top: 40px;
@@ -415,14 +419,18 @@ ul {
   animation-fill-mode: forwards;
 }
 
-.text-appear {
-  animation: text-appear 1000ms ease 1;
+.content-transition-in {
+  animation: content-transition-in 1000ms ease 1;
   animation-fill-mode: forwards;
 }
 
-.text-disappear {
-  animation: text-disappear 1000ms ease 1;
+.content-transition-out {
+  animation: content-transition-out 1000ms ease 1;
   animation-fill-mode: forwards;
+}
+
+.eye-roll-animation {
+  animation: eye-roll-animation 1200ms ease-in-out 1;
 }
 
 @keyframes swipe-up-animation {
@@ -449,7 +457,7 @@ ul {
   }
 }
 
-@keyframes text-appear {
+@keyframes content-transition-in {
   0% {
     opacity: 0;
   }
@@ -461,7 +469,7 @@ ul {
   }
 }
 
-@keyframes text-disappear {
+@keyframes content-transition-out {
   0% {
     opacity: 1;
   }
@@ -470,5 +478,17 @@ ul {
   }
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes eye-roll-animation {
+  0% {
+    transform: translateX(10px);
+  }
+  70% {
+    transform: translateX(80px);
+  }
+  100% {
+    transform: translateX(10px);
   }
 }
